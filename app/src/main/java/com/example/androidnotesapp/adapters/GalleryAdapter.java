@@ -4,19 +4,25 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidnotesapp.R;
 import com.example.androidnotesapp.databinding.ItemNoteBinding;
 import com.example.androidnotesapp.model.Note;
+import com.example.androidnotesapp.model.NoteViewModel;
 
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesViewholder> {
 
     private List<Note> note_list;
+    private NoteViewModel noteViewModel;
 
-    public GalleryAdapter(List<Note> noteList) {
-        note_list = noteList;
+    public GalleryAdapter(List<Note> noteList, NoteViewModel noteViewModel) {
+        this.note_list = noteList;
+        this.noteViewModel = noteViewModel;
     }
 
     @NonNull
@@ -34,6 +40,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
         Note note = note_list.get(position);
         holder.binding.noteTitleText.setText(note.getTitle());
         holder.binding.noteContentText.setText(note.getContent());
+
+        holder.itemView.setOnClickListener(v -> {
+            noteViewModel.selectNote(note);
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentViewNote);
+        });
+
+        // Navegar al fragmento de edición al hacer clic en el botón de edición
+        holder.binding.editNoteButton.setOnClickListener(v -> {
+            noteViewModel.selectNote(note);
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
+        });
 
 
     }

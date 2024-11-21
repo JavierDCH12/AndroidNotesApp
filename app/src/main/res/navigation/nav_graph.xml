@@ -9,6 +9,29 @@
         android:id="@+id/fragmentGalleryNotes"
         android:name="com.example.androidnotesapp.fragments.FragmentGalleryNotes"
         android:label="fragment_gallery_notes"
-        tools:layout="@layout/fragment_gallery_notes" />
+        tools:layout="@layout/fragment_gallery_notes" >
+        <action
+            android:id="@+id/action_fragmentGalleryNotes_to_fragmentDetailNote"
+            app:destination="@id/fragmentDetailNote" />
+        <action
+            android:id="@+id/action_fragmentGalleryNotes_to_fragmentViewNote"
+            app:destination="@id/fragmentViewNote" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetailNote"
+        android:name="com.example.androidnotesapp.fragments.FragmentDetailNote"
+        android:label="FragmentDetailNote" >
+        <action
+            android:id="@+id/action_fragmentDetailNote_to_fragmentGalleryNotes"
+            app:destination="@id/fragmentGalleryNotes" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewNote"
+        android:name="com.example.androidnotesapp.fragments.FragmentViewNote"
+        android:label="FragmentViewNote" >
+        <action
+            android:id="@+id/action_fragmentViewNote_to_fragmentDetailNote"
+            app:destination="@id/fragmentDetailNote" />
+    </fragment>
 
 </navigation>

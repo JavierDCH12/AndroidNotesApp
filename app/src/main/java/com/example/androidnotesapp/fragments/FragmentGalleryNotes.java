@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
@@ -79,6 +81,16 @@ public class FragmentGalleryNotes extends Fragment {
         });
 
 
+        binding.addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noteViewModel.selectNote(null);
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
+
+
+            }
+        });
 
 
     }//ONVIEWCREATED END

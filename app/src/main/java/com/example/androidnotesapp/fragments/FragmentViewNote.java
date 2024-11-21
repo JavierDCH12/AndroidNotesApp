@@ -5,22 +5,24 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.androidnotesapp.R;
-import com.example.androidnotesapp.databinding.FragmentDetailNoteBinding;
+import com.example.androidnotesapp.databinding.FragmentViewNoteBinding;
+import com.example.androidnotesapp.model.NoteViewModel;
 
 
-public class FragmentDetailNote extends Fragment {
+public class FragmentViewNote extends Fragment {
 
-    FragmentDetailNoteBinding   binding;
-    public FragmentDetailNote() {
+    FragmentViewNoteBinding binding;
+    private NoteViewModel noteViewModel;
+    public FragmentViewNote() {
         // Required empty public constructor
     }
 
@@ -35,40 +37,34 @@ public class FragmentDetailNote extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentDetailNoteBinding.inflate(inflater, container, false);
+        binding = FragmentViewNoteBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.cancelNoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
 
-                NavController navController = Navigation.findNavController(view);
-                navController.popBackStack(); //go back to previous view
-
+        noteViewModel.getSelectedNote().observe(getViewLifecycleOwner(), note -> {
+            if(note!=null){
+                binding.viewNoteTitle.setText(note.getTitle());
+                binding.viewNoteContent.setText(note.getContent());
             }
-        });
 
-
-        binding.saveNoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                NavController navController = Navigation.findNavController(view);
-                Toast.makeText(requireContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
-                navController.popBackStack(); //go back to previous view
-
-            }
         });
 
 
 
-    }//ONVIEWCREATED END
+        binding.editNoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_fragmentViewNote_to_fragmentDetailNote);
+            }
+        });
 
 
-}//FRAGMENT END
+    }
+}
