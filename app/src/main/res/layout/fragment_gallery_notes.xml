@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentGalleryNotes">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/emptyNotesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="No hay notas aún"
-        android:visibility="gone"/>
+        android:textSize="20sp"
+        android:textColor="@android:color/darker_gray"
+        android:alpha="0.7"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="sans-serif-light" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerGalleryNotes"

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesViewholder> {
 
-    private final List<Note> note_list;
+    private List<Note> note_list;
 
     public GalleryAdapter(List<Note> noteList) {
         note_list = noteList;
@@ -30,10 +30,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
     @Override
     public void onBindViewHolder(@NonNull GalleryAdapter.NotesViewholder holder, int position) {
 
-        Note note = note_list.get(position);
 
+        Note note = note_list.get(position);
         holder.binding.noteTitleText.setText(note.getTitle());
         holder.binding.noteContentText.setText(note.getContent());
+
 
     }
 
@@ -53,5 +54,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+
+    public void updateNotes(List<Note> notes) {
+        note_list.clear();
+        note_list.addAll(notes);
+        notifyDataSetChanged();
     }
 }

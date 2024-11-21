@@ -15,7 +15,11 @@ import android.view.ViewGroup;
 import com.example.androidnotesapp.R;
 import com.example.androidnotesapp.adapters.GalleryAdapter;
 import com.example.androidnotesapp.databinding.FragmentGalleryNotesBinding;
+import com.example.androidnotesapp.model.Note;
 import com.example.androidnotesapp.model.NoteViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FragmentGalleryNotes extends Fragment {
@@ -23,10 +27,10 @@ public class FragmentGalleryNotes extends Fragment {
     FragmentGalleryNotesBinding binding;
     private NoteViewModel noteViewModel;
     private GalleryAdapter galleryAdapter;
+    private List<Note> notes_list;
 
 
     public FragmentGalleryNotes() {
-        // Required empty public constructor
     }
 
 
@@ -49,12 +53,30 @@ public class FragmentGalleryNotes extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
+        notes_list = noteViewModel.getNoteList().getValue();
+        if (notes_list == null) {
+            notes_list = new ArrayList<>();
+        }
+
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         binding.recyclerGalleryNotes.setLayoutManager(gridLayoutManager);
 
         binding.recyclerGalleryNotes.setAdapter(galleryAdapter);
+
+        noteViewModel.getNoteList().observe(getViewLifecycleOwner(), notes ->{
+            if(notes_list.isEmpty()){
+                binding.recyclerGalleryNotes.setVisibility(View.GONE);
+                binding.emptyNotesText.setVisibility(View.VISIBLE);
+
+            }else{
+                binding.emptyNotesText.setVisibility(View.GONE);
+                binding.recyclerGalleryNotes.setVisibility(View.VISIBLE);
+                galleryAdapter.updateNotes(notes);
+
+            }
+        });
 
 
 
