@@ -34,22 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
         //BOTTOM BAR
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(binding.navHost.getId());
+                .findFragmentById(R.id.nav_host_fragment);
+
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.bottomMenu, navController);
 
-        binding.bottomMenu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.fragmentGalleryNotes){
-                   // binding.toolbar.setTitle(getString(R.string.toolbar_gallery_title));
-                    //binding.toolbar.setSubtitle(getString(R.string.toolbar_gallery_subtitle));
-                   navController.navigate(R.id.fragmentGalleryNotes);
-
-
-                }
-                return true;
+        binding.bottomMenu.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.fragmentGalleryNotes) {
+                navController.navigate(R.id.fragmentGalleryNotes);
             }
+            return true;
         });
 
 
