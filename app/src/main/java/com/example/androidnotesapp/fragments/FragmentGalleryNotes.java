@@ -56,16 +56,20 @@ public class FragmentGalleryNotes extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
+
         notes_list = noteViewModel.getNoteList().getValue();
         if (notes_list == null) {
             notes_list = new ArrayList<>();
         }
 
+        galleryAdapter = new GalleryAdapter(new ArrayList<>(notes_list), noteViewModel);
+        binding.recyclerGalleryNotes.setAdapter(galleryAdapter);
+
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         binding.recyclerGalleryNotes.setLayoutManager(gridLayoutManager);
 
-        binding.recyclerGalleryNotes.setAdapter(galleryAdapter);
 
         noteViewModel.getNoteList().observe(getViewLifecycleOwner(), notes ->{
             if(notes_list.isEmpty()){
@@ -91,6 +95,8 @@ public class FragmentGalleryNotes extends Fragment {
 
             }
         });
+
+
 
 
     }//ONVIEWCREATED END

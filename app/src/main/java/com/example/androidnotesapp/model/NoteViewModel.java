@@ -38,6 +38,16 @@ public class NoteViewModel extends ViewModel {
         note_list.setValue(currentList);
     }
 
+    public void updateSelectedNote(Note updatedNote) {
+        List<Note> currentList = new ArrayList<>(note_list.getValue());
+        for (int i = 0; i < currentList.size(); i++) {
+            if (currentList.get(i).getId() == updatedNote.getId()) {
+                currentList.set(i, updatedNote);
+            }
+        }
+        note_list.setValue(currentList);
+    }
+
 
 
 }

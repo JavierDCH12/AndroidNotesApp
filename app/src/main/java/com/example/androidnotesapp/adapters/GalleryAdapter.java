@@ -2,6 +2,7 @@ package com.example.androidnotesapp.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -52,6 +53,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
             noteViewModel.selectNote(note);
             NavController navController = Navigation.findNavController(v);
             navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
+        });
+
+        holder.binding.deleteNoteButton.setOnClickListener(v -> {
+            //noteViewModel.selectNote(note);
+            noteViewModel.deleteNote(note);
+            notifyItemRemoved(position);
+
+            Toast.makeText(v.getContext(), "Nota eliminada", Toast.LENGTH_SHORT).show();
         });
 
 

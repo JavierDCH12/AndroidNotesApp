@@ -14,6 +14,14 @@ public class Note {
         this.category = category;
     }
 
+
+    public Note(String title, String content) {
+
+        this.title = title;
+        this.content = content;
+
+    }
+
     public int getId() {
         return id;
     }
