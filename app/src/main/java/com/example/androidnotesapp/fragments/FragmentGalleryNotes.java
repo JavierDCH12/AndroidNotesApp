@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,8 @@ public class FragmentGalleryNotes extends Fragment {
     FragmentGalleryNotesBinding binding;
     private NoteViewModel noteViewModel;
     private GalleryAdapter galleryAdapter;
-    private List<Note> notes_list;
+    private List<Note> notes_list = new ArrayList<>();
+
 
 
     public FragmentGalleryNotes() {
@@ -57,48 +59,30 @@ public class FragmentGalleryNotes extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
 
-        notes_list = noteViewModel.getNoteList().getValue();
-        if (notes_list == null) {
-            notes_list = new ArrayList<>();
-        }
-
-        galleryAdapter = new GalleryAdapter(new ArrayList<>(notes_list), noteViewModel);
+        galleryAdapter = new GalleryAdapter(new ArrayList<>(), noteViewModel);
         binding.recyclerGalleryNotes.setAdapter(galleryAdapter);
-
-
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         binding.recyclerGalleryNotes.setLayoutManager(gridLayoutManager);
 
+        noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
+            Log.d("FragmentGalleryNotes", "Notes received: " + notes.size());
 
-        noteViewModel.getNoteList().observe(getViewLifecycleOwner(), notes ->{
-            if(notes_list.isEmpty()){
+            if (notes == null || notes.isEmpty()) {
                 binding.recyclerGalleryNotes.setVisibility(View.GONE);
                 binding.emptyNotesText.setVisibility(View.VISIBLE);
-
-            }else{
+            } else {
                 binding.emptyNotesText.setVisibility(View.GONE);
                 binding.recyclerGalleryNotes.setVisibility(View.VISIBLE);
                 galleryAdapter.updateNotes(notes);
-
             }
         });
 
-
-        binding.addNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                noteViewModel.selectNote(null);
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
-
-
-            }
+        binding.addNote.setOnClickListener(view1 -> {
+            noteViewModel.selectNote(null);
+            NavController navController = Navigation.findNavController(view1);
+            navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
         });
-
-
-
-
     }//ONVIEWCREATED END
 
 

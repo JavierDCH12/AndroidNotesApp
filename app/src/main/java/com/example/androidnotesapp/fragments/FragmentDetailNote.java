@@ -87,20 +87,24 @@ public class FragmentDetailNote extends Fragment {
                     Toast.makeText(requireContext(), "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Note currentNote = new Note(title, content);
+                Note currentNote;
 
                 if (noteViewModel.getSelectedNote().getValue() != null) {
                     Note selectedNote = noteViewModel.getSelectedNote().getValue();
                     selectedNote.setTitle(title);
                     selectedNote.setContent(content);
-                    noteViewModel.updateSelectedNote(selectedNote);
+                    currentNote = selectedNote;
+                    noteViewModel.update(currentNote);
+                    Toast.makeText(requireContext(), "Nota actualizada con éxito", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    noteViewModel.addNote(currentNote);
+                    currentNote = new Note(title, content, null);
+                    noteViewModel.insert(currentNote);
+                    Toast.makeText(requireContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
                 }
 
-                Toast.makeText(requireContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
-                navController.popBackStack(); // Volver a la vista anterior
+
+                navController.popBackStack();
 
             }
         });

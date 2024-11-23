@@ -19,7 +19,7 @@ import java.util.List;
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesViewholder> {
 
     private List<Note> note_list;
-    private NoteViewModel noteViewModel;
+    private final NoteViewModel noteViewModel;
 
     public GalleryAdapter(List<Note> noteList, NoteViewModel noteViewModel) {
         this.note_list = noteList;
@@ -36,8 +36,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
 
     @Override
     public void onBindViewHolder(@NonNull GalleryAdapter.NotesViewholder holder, int position) {
-
-
         Note note = note_list.get(position);
         holder.binding.noteTitleText.setText(note.getTitle());
         holder.binding.noteContentText.setText(note.getContent());
@@ -48,7 +46,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
             navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentViewNote);
         });
 
-        // Navegar al fragmento de edición al hacer clic en el botón de edición
         holder.binding.editNoteButton.setOnClickListener(v -> {
             noteViewModel.selectNote(note);
             NavController navController = Navigation.findNavController(v);
@@ -56,26 +53,18 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
         });
 
         holder.binding.deleteNoteButton.setOnClickListener(v -> {
-            //noteViewModel.selectNote(note);
-            noteViewModel.deleteNote(note);
-            notifyItemRemoved(position);
-
+            noteViewModel.delete(note);
             Toast.makeText(v.getContext(), "Nota eliminada", Toast.LENGTH_SHORT).show();
         });
-
-
     }
 
     @Override
     public int getItemCount() {
-        return note_list.size();
+        return (note_list != null) ? note_list.size() : 0;
     }
 
-
-
-
-    //BINDING OF THE SINGLE NOTE VIEWHOLDER
-    static class NotesViewholder extends RecyclerView.ViewHolder{
+    // ViewHolder
+    static class NotesViewholder extends RecyclerView.ViewHolder {
         ItemNoteBinding binding;
 
         public NotesViewholder(@NonNull ItemNoteBinding binding) {
@@ -84,10 +73,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
         }
     }
 
-
     public void updateNotes(List<Note> notes) {
-        note_list.clear();
-        note_list.addAll(notes);
+        this.note_list = notes;
         notifyDataSetChanged();
     }
 }

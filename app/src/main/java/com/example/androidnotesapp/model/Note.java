@@ -1,27 +1,33 @@
 package com.example.androidnotesapp.model;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
+@Entity(tableName = "notes")
 public class Note {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @NonNull
     private String title;
+
+    @NonNull
     private String content;
+
+    @Nullable
     private String category;
 
-    public Note(int id, String title, String content, String category) {
-        this.id = id;
+    public Note(@NonNull String title, @NonNull String content, @Nullable String category) {
         this.title = title;
         this.content = content;
         this.category = category;
     }
 
-
-    public Note(String title, String content) {
-
-        this.title = title;
-        this.content = content;
-
-    }
-
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -30,30 +36,32 @@ public class Note {
         this.id = id;
     }
 
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
+    @NonNull
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(@NonNull String content) {
         this.content = content;
     }
 
+    @Nullable
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(@Nullable String category) {
         this.category = category;
     }
-
 
     @Override
     public String toString() {
