@@ -1,68 +1,77 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@drawable/item_background"
-    android:padding="16dp"
-    android:elevation="4dp">
+    android:layout_margin="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@android:color/white">
 
-    <!-- Título de la nota -->
-    <TextView
-        android:id="@+id/noteTitleText"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Note Title"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textColor="@android:color/black"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editNoteButton"
-        />
+        android:padding="16dp">
 
-    <!-- Contenido de la nota -->
-    <TextView
-        android:id="@+id/noteContentText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="This is the note content. This is a sample text for the note content."
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="@android:color/darker_gray"
-        android:maxLines="3"
-        android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/noteTitleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editNoteButton"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <!-- Note Title -->
+        <TextView
+            android:id="@+id/noteTitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Note Title"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@android:color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/editNoteButton" />
 
-    <!-- Botón de editar -->
-    <ImageButton
-        android:id="@+id/editNoteButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Edit Note"
-        app:srcCompat="@drawable/edit_icon"
-        app:tint="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Note Content -->
+        <TextView
+            android:id="@+id/noteContentText"
+            android:layout_width="291dp"
+            android:layout_height="41dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="This is the note content. This is a sample text for the note content."
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/editNoteButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noteTitleText" />
 
-    <!-- Botón de borrar -->
-    <ImageButton
-        android:id="@+id/deleteNoteButton"
-        android:layout_width="53dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Delete Note"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editNoteButton"
-        app:srcCompat="@drawable/ic_delete"
-        app:tint="@android:color/black" />
+        <!-- Edit Button -->
+        <ImageButton
+            android:id="@+id/editNoteButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Edit Note"
+            android:scaleType="centerInside"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:srcCompat="@drawable/ic_edit"
+            app:tint="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Delete Button -->
+        <ImageButton
+            android:id="@+id/deleteNoteButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Delete Note"
+            app:layout_constraintTop_toBottomOf="@id/editNoteButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_delete"
+            app:tint="@android:color/black" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

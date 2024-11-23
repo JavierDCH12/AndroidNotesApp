@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="48dp"
+    android:width="48dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24">
+
+
+
+    <!-- Contenido principal del ícono -->
+    <path
+        android:fillColor="#6200EE"
+        android:strokeWidth="0.5"
+        android:strokeColor="#3700B3"
+        android:pathData="M3,17.25V21h3.75L17.81,9.94l-3.75,-3.75L3,17.25zM20.71,7.04c0.39,-0.39 0.39,-1.02 0,-1.41l-2.34,-2.34c-0.39,-0.39 -1.02,-0.39 -1.41,0l-1.83,1.83 3.75,3.75 1.83,-1.83z" />
+
+    <!-- Sombra para darle profundidad -->
+    <path
+        android:fillColor="#000000"
+        android:fillAlpha="0.2"
+        android:pathData="M3.5,17.75V21.5h4.25L18.31,10.44l-4.25,-4.25L3.5,17.75z"
+        android:translateX="0.5"
+        android:translateY="0.5" />
+</vector>

@@ -51,6 +51,17 @@ public class FragmentDetailNote extends Fragment {
 
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
 
+        noteViewModel.getSelectedNote().observe(getViewLifecycleOwner(), note->{
+            if(note!=null){
+                binding.editNoteTitle.setText(note.getTitle());
+                binding.editNoteContent.setText(note.getContent());
+            }
+            else{
+                binding.editNoteTitle.setText(" ");
+                binding.editNoteContent.setText(" ");
+            }
+        });
+
 
         binding.cancelNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +96,6 @@ public class FragmentDetailNote extends Fragment {
                     noteViewModel.updateSelectedNote(selectedNote);
 
                 } else {
-                    Log.i("ntrar", "a add");
                     noteViewModel.addNote(currentNote);
                 }
 
