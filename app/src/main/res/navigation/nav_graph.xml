@@ -44,6 +44,19 @@
         <action
             android:id="@+id/action_fragmentCategoryNote_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
+        <action
+            android:id="@+id/action_fragmentCategoryNote_to_fragmentShoppingListNote"
+            app:destination="@id/fragmentShoppingListNote" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentShoppingListNote"
+        android:name="com.example.androidnotesapp.fragments.FragmentCategoryNote"
+        android:label="fragment_category_note"
+        tools:layout="@layout/fragment_shopping_list_note" >
+        <action
+            android:id="@+id/action_fragmentShoppingListNote_to_fragmentGalleryNotes"
+            app:destination="@id/fragmentGalleryNotes" />
     </fragment>
 
 </navigation>

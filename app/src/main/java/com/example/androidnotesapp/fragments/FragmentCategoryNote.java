@@ -24,6 +24,8 @@ public class FragmentCategoryNote extends Fragment {
 
     FragmentCategoryNoteBinding binding;
     private NoteViewModel noteViewModel;
+    NavController navController;
+    private String selectedCategory;
 
     public FragmentCategoryNote() {
         // Required empty public constructor
@@ -52,8 +54,7 @@ public class FragmentCategoryNote extends Fragment {
 
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
 
-
-        NavController navController = Navigation.findNavController(view);
+        navController = Navigation.findNavController(view);
 
         binding.confirmaCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +74,12 @@ public class FragmentCategoryNote extends Fragment {
 
                 noteViewModel.selectNote(note);
 
-                navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentDetailNote);
+                chooseCategoryNav();
 
             }
         });
+
+
 
 
         binding.cancelCategoryButton.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +103,28 @@ public class FragmentCategoryNote extends Fragment {
             return selectedChip.getText().toString();
         }
         return null;
+    }
+
+    private void setUpSelectedCategoryString(){
+        binding.chipStandardNote.setOnClickListener(v -> selectedCategory = "standard");
+        binding.chipShoppingList.setOnClickListener(v -> selectedCategory = "shopping_list");
+    }
+
+
+    private void chooseCategoryNav() {
+
+        switch (selectedCategory) {
+            case "standard":
+                navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentDetailNote);
+                break;
+
+            case "shopping_list":
+                navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentShoppingListNote);
+                break;
+
+            default:
+                Toast.makeText(requireContext(), "Categoría desconocida", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

@@ -15,7 +15,10 @@ import android.view.ViewGroup;
 import com.example.androidnotesapp.databinding.FragmentShoppingListNoteBinding;
 import com.example.androidnotesapp.databinding.FragmentStandardBinding;
 import com.example.androidnotesapp.model.ShoppingItem;
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,32 +81,23 @@ public class FragmentShoppingListNote extends Fragment {
             }
         });
 
-        private void saveShoppingList() {
-            String json = gson.toJson(shoppingList);
-            sharedPreferences.edit().putString(PREFS_SHOPPING_LIST_KEY, json).apply();
-        }
-
-        private void loadShoppingList() {
-            String json = gson.toJson(shoppingList);
-            if (json != null) {
-                Type type = new TypeToken<List<ShoppingItem>>() {}.getType();
-                shoppingList = gson.fromJson(json, type);
-            }
-        }
-
-
-
-
-
-
-
-
-
-
 
 
 
     }//ONVIEWCREATED END
+
+    private void saveShoppingList() {
+        String json = gson.toJson(shoppingList);
+        sharedPreferences.edit().putString(PREFS_SHOPPING_LIST_KEY, json).apply();
+    }
+
+    private void loadShoppingList() {
+        String json = gson.toJson(shoppingList);
+        if (json != null) {
+            Type type = new TypeToken<List<ShoppingItem>>() {}.getType();
+            shoppingList = gson.fromJson(json, type);
+        }
+    }
 
 
 
