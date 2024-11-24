@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailNote"
-        android:name="com.example.androidnotesapp.fragments.FragmentDetailNote"
+        android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandarNote"
         android:label="FragmentDetailNote" >
         <action
             android:id="@+id/action_fragmentDetailNote_to_fragmentGalleryNotes"

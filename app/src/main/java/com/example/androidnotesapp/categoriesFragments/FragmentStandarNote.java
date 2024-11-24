@@ -1,4 +1,4 @@
-package com.example.androidnotesapp.fragments;
+package com.example.androidnotesapp.categoriesFragments;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,11 @@ import com.example.androidnotesapp.model.Note;
 import com.example.androidnotesapp.model.NoteViewModel;
 
 
-public class FragmentDetailNote extends Fragment {
+public class FragmentStandarNote extends Fragment {
 
     FragmentDetailNoteBinding   binding;
     private NoteViewModel noteViewModel;
-    public FragmentDetailNote() {
+    public FragmentStandarNote() {
         // Required empty public constructor
     }
 
