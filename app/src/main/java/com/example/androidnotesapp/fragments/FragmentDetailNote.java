@@ -77,9 +77,6 @@ public class FragmentDetailNote extends Fragment {
         binding.saveNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                NavController navController = Navigation.findNavController(view);
-
                 String title = binding.editNoteTitle.getText().toString().trim();
                 String content = binding.editNoteContent.getText().toString().trim();
 
@@ -87,25 +84,22 @@ public class FragmentDetailNote extends Fragment {
                     Toast.makeText(requireContext(), "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Note currentNote;
 
-                if (noteViewModel.getSelectedNote().getValue() != null) {
-                    Note selectedNote = noteViewModel.getSelectedNote().getValue();
-                    selectedNote.setTitle(title);
-                    selectedNote.setContent(content);
-                    currentNote = selectedNote;
-                    noteViewModel.update(currentNote);
-                    Toast.makeText(requireContext(), "Nota actualizada con éxito", Toast.LENGTH_SHORT).show();
+                Note currentNote = noteViewModel.getSelectedNote().getValue();
+                if (currentNote != null) {
+                    currentNote.setTitle(title);
+                    currentNote.setContent(content);
 
-                } else {
-                    currentNote = new Note(title, content, null);
-                    noteViewModel.insert(currentNote);
+                    if (currentNote.getId() == 0) {
+                        noteViewModel.insert(currentNote);
+                    } else {
+                        noteViewModel.update(currentNote);
+                    }
                     Toast.makeText(requireContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
+
+                    NavController navController = Navigation.findNavController(view);
+                    navController.navigate(R.id.action_fragmentDetailNote_to_fragmentGalleryNotes);
                 }
-
-
-                navController.popBackStack();
-
             }
         });
 

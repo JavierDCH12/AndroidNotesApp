@@ -39,6 +39,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
         Note note = note_list.get(position);
         holder.binding.noteTitleText.setText(note.getTitle());
         holder.binding.noteContentText.setText(note.getContent());
+        holder.binding.noteCategoryText.setText(note.getCategory());
 
         holder.itemView.setOnClickListener(v -> {
             noteViewModel.selectNote(note);

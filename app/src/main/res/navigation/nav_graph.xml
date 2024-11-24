@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentViewNote"
             app:destination="@id/fragmentViewNote" />
+        <action
+            android:id="@+id/action_fragmentGalleryNotes_to_fragmentCategoryNote"
+            app:destination="@id/fragmentCategoryNote" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailNote"
@@ -31,6 +34,15 @@
         android:label="FragmentViewNote" >
         <action
             android:id="@+id/action_fragmentViewNote_to_fragmentDetailNote"
+            app:destination="@id/fragmentDetailNote" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCategoryNote"
+        android:name="com.example.androidnotesapp.fragments.FragmentCategoryNote"
+        android:label="fragment_category_note"
+        tools:layout="@layout/fragment_category_note" >
+        <action
+            android:id="@+id/action_fragmentCategoryNote_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
     </fragment>
 

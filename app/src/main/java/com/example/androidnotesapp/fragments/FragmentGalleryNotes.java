@@ -81,7 +81,7 @@ public class FragmentGalleryNotes extends Fragment {
         binding.addNote.setOnClickListener(view1 -> {
             noteViewModel.selectNote(null);
             NavController navController = Navigation.findNavController(view1);
-            navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentDetailNote);
+            navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentCategoryNote);
         });
     }//ONVIEWCREATED END
 
