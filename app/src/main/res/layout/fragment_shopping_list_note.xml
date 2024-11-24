@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancelNoteButton"
+            android:id="@+id/cancelShoppingListButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Cancelar"
@@ -68,7 +68,7 @@
             android:textColor="@android:color/white" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveNoteButton"
+            android:id="@+id/saveShoppingListButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Guardar"
