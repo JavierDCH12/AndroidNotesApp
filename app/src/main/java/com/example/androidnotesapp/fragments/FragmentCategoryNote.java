@@ -22,80 +22,54 @@ import com.example.androidnotesapp.model.NoteViewModel;
 
 public class FragmentCategoryNote extends Fragment {
 
-    FragmentCategoryNoteBinding binding;
+    private FragmentCategoryNoteBinding binding;
     private NoteViewModel noteViewModel;
-    NavController navController;
-    private String selectedCategory;
+    private NavController navController;
+    private static final String CATEGORY_STANDARD = "Standard";
+    private static final String CATEGORY_SHOPPING_LIST = "Shopping List";
 
     public FragmentCategoryNote() {
         // Required empty public constructor
     }
 
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCategoryNoteBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         noteViewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
-
         navController = Navigation.findNavController(view);
 
-        binding.confirmaCategoryButton.setOnClickListener(new View.OnClickListener() {
+        binding.confirmCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String category = getSelectedCategory();
 
-
-
-                if(category.isEmpty() || category==null){
+                if (category == null || category.isEmpty()) {
                     Toast.makeText(requireContext(), "Por favor, elige una categoría", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
+
                 Note note = new Note("", "", category);
-
-
-
                 noteViewModel.selectNote(note);
 
-                chooseCategoryNav();
-
+                navigateToCategoryFragment(category);
             }
         });
-
-
-
 
         binding.cancelCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navController.popBackStack();
-
-
             }
         });
+    }
 
-
-
-    }//END ONVIEWCREATED
-
-    //HOW TO GET SPECIFIC CHIP IN CHIP GROUP
     private String getSelectedCategory() {
         int selectedChipId = binding.categoryChipGroup.getCheckedChipId();
         if (selectedChipId != View.NO_ID) {
@@ -105,26 +79,13 @@ public class FragmentCategoryNote extends Fragment {
         return null;
     }
 
-    private void setUpSelectedCategoryString(){
-        binding.chipStandardNote.setOnClickListener(v -> selectedCategory = "standard");
-        binding.chipShoppingList.setOnClickListener(v -> selectedCategory = "shopping_list");
-    }
-
-
-    private void chooseCategoryNav() {
-
-        switch (selectedCategory) {
-            case "standard":
-                navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentDetailNote);
-                break;
-
-            case "shopping_list":
-                navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentShoppingListNote);
-                break;
-
-            default:
-                Toast.makeText(requireContext(), "Categoría desconocida", Toast.LENGTH_SHORT).show();
-                break;
+    private void navigateToCategoryFragment(String category) {
+        if (CATEGORY_STANDARD.equalsIgnoreCase(category)) {
+            navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentDetailNote);
+        } else if (CATEGORY_SHOPPING_LIST.equalsIgnoreCase(category)) {
+            navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentShoppingListNote);
+        } else {
+            Toast.makeText(requireContext(), "Categoría desconocida. Intenta nuevamente.", Toast.LENGTH_SHORT).show();
         }
     }
 }

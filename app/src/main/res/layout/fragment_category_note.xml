@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         app:chipSpacingHorizontal="8dp"
         app:chipSpacingVertical="8dp"
-        app:layout_constraintBottom_toTopOf="@id/confirmaCategoryButton"
+        app:layout_constraintBottom_toTopOf="@id/confirmCategoryButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nota estándar" />
+            android:text="Standard" />
 
         <!-- Chip: Lista de compras -->
         <com.google.android.material.chip.Chip
@@ -49,7 +49,8 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lista de compras" />
+            android:text="Shopping List"
+            />
 
         <!-- Chip: Recordatorio -->
         <com.google.android.material.chip.Chip
@@ -62,7 +63,7 @@
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/confirmaCategoryButton"
+        android:id="@+id/confirmCategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_check"

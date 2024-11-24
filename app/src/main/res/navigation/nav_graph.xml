@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentGalleryNotes">
 
+    <!-- Gallery Fragment -->
     <fragment
         android:id="@+id/fragmentGalleryNotes"
         android:name="com.example.androidnotesapp.fragments.FragmentGalleryNotes"
-        android:label="fragment_gallery_notes"
-        tools:layout="@layout/fragment_gallery_notes" >
+        android:label="FragmentGalleryNotes"
+        tools:layout="@layout/fragment_gallery_notes">
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
@@ -20,27 +20,35 @@
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentCategoryNote"
             app:destination="@id/fragmentCategoryNote" />
     </fragment>
+
+    <!-- Detail Fragment -->
     <fragment
         android:id="@+id/fragmentDetailNote"
-        android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandarNote"
-        android:label="FragmentDetailNote" >
+        android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandardNote"
+        android:label="FragmentDetailNote"
+        tools:layout="@layout/fragment_detail_note">
         <action
             android:id="@+id/action_fragmentDetailNote_to_fragmentGalleryNotes"
             app:destination="@id/fragmentGalleryNotes" />
     </fragment>
+
+    <!-- View Note Fragment -->
     <fragment
         android:id="@+id/fragmentViewNote"
         android:name="com.example.androidnotesapp.fragments.FragmentViewNote"
-        android:label="FragmentViewNote" >
+        android:label="FragmentViewNote"
+        tools:layout="@layout/fragment_view_note">
         <action
             android:id="@+id/action_fragmentViewNote_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
     </fragment>
+
+    <!-- Category Selection Fragment -->
     <fragment
         android:id="@+id/fragmentCategoryNote"
         android:name="com.example.androidnotesapp.fragments.FragmentCategoryNote"
-        android:label="fragment_category_note"
-        tools:layout="@layout/fragment_category_note" >
+        android:label="FragmentCategoryNote"
+        tools:layout="@layout/fragment_category_note">
         <action
             android:id="@+id/action_fragmentCategoryNote_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
@@ -49,11 +57,12 @@
             app:destination="@id/fragmentShoppingListNote" />
     </fragment>
 
+    <!-- Shopping List Fragment -->
     <fragment
         android:id="@+id/fragmentShoppingListNote"
-        android:name="com.example.androidnotesapp.fragments.FragmentCategoryNote"
-        android:label="fragment_category_note"
-        tools:layout="@layout/fragment_shopping_list_note" >
+        android:name="com.example.androidnotesapp.categoriesFragments.FragmentShoppingListNote"
+        android:label="FragmentShoppingListNote"
+        tools:layout="@layout/fragment_shopping_list_note">
         <action
             android:id="@+id/action_fragmentShoppingListNote_to_fragmentGalleryNotes"
             app:destination="@id/fragmentGalleryNotes" />
