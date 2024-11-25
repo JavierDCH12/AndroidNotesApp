@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General App Theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_dark_color</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/accent_color</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+    </style>
+
+    <!-- Toolbar Style -->
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/primary_color</item>
+        <item name="android:titleTextColor">@android:color/white</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <!-- Bottom Navigation -->
+    <style name="BottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@drawable/selector_bottom_nav</item>
+        <item name="itemTextColor">@drawable/selector_bottom_nav</item>
+        <item name="android:background">@color/primary_dark_color</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
+    <!-- ACTIVE Bottom Navigation -->
+    <style name="TextAppearance.App.BottomNav.Active" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/accent_color</item>
+    </style>
+
+    <!-- INACTIVE en Bottom Navigation -->
+    <style name="TextAppearance.App.BottomNav.Inactive" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+</resources>

@@ -5,5 +5,27 @@
     <color name="gray">#757575</color>
     <color name="primary">#2196F3</color>
     <color name="error">#F44336</color>
+    <color name="active_color">#0288D1</color>
+    <color name="inactive_color">#757575</color>
+    <color name="ripple_color_2">#64B5F6</color>
+
+
+    <color name="primary_color">#3A6351</color> <!-- Verde suave -->
+    <color name="primary_dark_color">#489E6C</color> <!-- Verde oscuro -->
+    <color name="accent_color">#26CC49</color> <!-- Verde claro/acento -->
+
+    <!-- Backgrounds -->
+    <color name="background_light">#F9F9F9</color> <!-- Fondo claro -->
+    <color name="background_dark">#2B2B2B</color> <!-- Fondo oscuro (modo noche) -->
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A1A</color> <!-- Texto principal -->
+    <color name="text_secondary">#6D6D6D</color> <!-- Texto secundario -->
+    <color name="text_highlight">#59A96A</color> <!-- Texto resaltado -->
+
+    <!-- Other UI Colors -->
+    <color name="divider_color">#E0E0E0</color> <!-- Divisores -->
+    <color name="ripple_color">#A5D6A7</color> <!-- Ripple efecto en botones -->
+
 
 </resources>

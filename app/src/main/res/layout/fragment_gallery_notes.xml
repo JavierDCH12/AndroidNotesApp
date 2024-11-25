@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTint="@color/primary_color"
         android:contentDescription="Añadir Nota"
         android:src="@android:drawable/ic_input_add"
         app:tint="@android:color/white" />
