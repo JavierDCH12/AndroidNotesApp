@@ -3,8 +3,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="delete_note">Delete note</string>
-    <string name="edit_note">Edit note</string>
+    <string name="delete_note">Borrar Nota</string>
+    <string name="edit_note">Editar Nota</string>
+    <string name="deleted_note">Nota eliminada</string>
+    <string name="request_fill_field">Por favor, rellena todos los campos</string>
+    <string name="request_pick_category">Por favor, elige una categoría</string>
+    <string name="err_unknown_category">Categoría desconocida. Inténtalo nuevamente</string>
+    <string name="success_save">Nota guardada con éxito</string>
+
+
+
+
+
+
 
 
 </resources>

@@ -31,6 +31,7 @@ public class FragmentShoppingListNote extends Fragment {
     private static final String PREFS_SHOPPING_LIST_KEY = "shopping_list";
     private Gson gson;
     private SharedPreferences sharedPreferences;
+    private static final String EMPTY_PARAMETER = "";
 
     public FragmentShoppingListNote() {
         // Required empty public constructor
@@ -66,7 +67,7 @@ public class FragmentShoppingListNote extends Fragment {
 
             @Override
             public void onClick(View view) {
-                shoppingList.add(new ShoppingItem("", false));
+                shoppingList.add(new ShoppingItem(EMPTY_PARAMETER, false));
 
             }
         });
@@ -75,7 +76,7 @@ public class FragmentShoppingListNote extends Fragment {
 
             @Override
             public void onClick(View view) {
-                shoppingList.add(new ShoppingItem("", false));
+                shoppingList.add(new ShoppingItem(EMPTY_PARAMETER, false));
                 saveShoppingList();
 
             }

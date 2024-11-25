@@ -27,6 +27,7 @@ public class FragmentCategoryNote extends Fragment {
     private NavController navController;
     private static final String CATEGORY_STANDARD = "Standard";
     private static final String CATEGORY_SHOPPING_LIST = "Shopping List";
+    private static final String EMPTY_STRING="";
 
     public FragmentCategoryNote() {
         // Required empty public constructor
@@ -51,11 +52,11 @@ public class FragmentCategoryNote extends Fragment {
                 String category = getSelectedCategory();
 
                 if (category == null || category.isEmpty()) {
-                    Toast.makeText(requireContext(), "Por favor, elige una categoría", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.request_pick_category, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Note note = new Note("", "", category);
+                Note note = new Note(EMPTY_STRING, EMPTY_STRING, category);
                 noteViewModel.selectNote(note);
 
                 navigateToCategoryFragment(category);
@@ -81,11 +82,11 @@ public class FragmentCategoryNote extends Fragment {
 
     private void navigateToCategoryFragment(String category) {
         if (CATEGORY_STANDARD.equalsIgnoreCase(category)) {
-            navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentDetailNote);
+            navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentStandarNote);
         } else if (CATEGORY_SHOPPING_LIST.equalsIgnoreCase(category)) {
             navController.navigate(R.id.action_fragmentCategoryNote_to_fragmentShoppingListNote);
         } else {
-            Toast.makeText(requireContext(), "Categoría desconocida. Intenta nuevamente.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.err_unknown_category, Toast.LENGTH_SHORT).show();
         }
     }
 }

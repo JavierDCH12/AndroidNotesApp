@@ -55,7 +55,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
 
         holder.binding.deleteNoteButton.setOnClickListener(v -> {
             noteViewModel.delete(note);
-            Toast.makeText(v.getContext(), "Nota eliminada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), R.string.deleted_note, Toast.LENGTH_SHORT).show();
         });
     }
 

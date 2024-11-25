@@ -24,6 +24,9 @@ public class FragmentViewNote extends Fragment {
 
     FragmentViewNoteBinding binding;
     private NoteViewModel noteViewModel;
+    private static final String STANDARD_CATEGORY = "standard";
+    private static final String SHOPPING_LIST_CATEGORY = "shopping list";
+
     public FragmentViewNote() {
         // Required empty public constructor
     }
@@ -69,14 +72,14 @@ public class FragmentViewNote extends Fragment {
                     NavController navController = Navigation.findNavController(view);
 
                     switch (category.toLowerCase()){
-                        case "standard":
+                        case STANDARD_CATEGORY:
                             navController.navigate(R.id.action_fragmentViewNote_to_fragmentDetailNote);
                             break;
-                        case "shopping list":
+                        case SHOPPING_LIST_CATEGORY:
                             navController.navigate(R.id.action_fragmentViewNote_to_fragmentShoppingListNote);
                             break;
                         default:
-                            Toast.makeText(requireContext(), "Categoria no encontrads", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), R.string.err_unknown_category, Toast.LENGTH_SHORT).show();
 
                     }
 

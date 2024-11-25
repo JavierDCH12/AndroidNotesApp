@@ -24,6 +24,7 @@ public class FragmentStandarNote extends Fragment {
 
     FragmentDetailNoteBinding   binding;
     private NoteViewModel noteViewModel;
+    private static final String EMPTY_STRING = "";
     public FragmentStandarNote() {
         // Required empty public constructor
     }
@@ -56,8 +57,8 @@ public class FragmentStandarNote extends Fragment {
                 binding.editNoteContent.setText(note.getContent());
             }
             else{
-                binding.editNoteTitle.setText(" ");
-                binding.editNoteContent.setText(" ");
+                binding.editNoteTitle.setText(EMPTY_STRING);
+                binding.editNoteContent.setText(EMPTY_STRING);
             }
         });
 
@@ -80,7 +81,7 @@ public class FragmentStandarNote extends Fragment {
                 String content = binding.editNoteContent.getText().toString().trim();
 
                 if (title.isEmpty() || content.isEmpty()) {
-                    Toast.makeText(requireContext(), "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.request_fill_field, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -94,10 +95,10 @@ public class FragmentStandarNote extends Fragment {
                     } else {
                         noteViewModel.update(currentNote);
                     }
-                    Toast.makeText(requireContext(), "Nota guardada con éxito", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.success_save, Toast.LENGTH_SHORT).show();
 
                     NavController navController = Navigation.findNavController(view);
-                    navController.navigate(R.id.action_fragmentDetailNote_to_fragmentGalleryNotes);
+                    navController.navigate(R.id.action_fragmentStandarNote_to_fragmentGalleryNotes);
                 }
             }
         });

@@ -66,7 +66,6 @@ public class FragmentGalleryNotes extends Fragment {
         binding.recyclerGalleryNotes.setLayoutManager(gridLayoutManager);
 
         noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
-            Log.d("FragmentGalleryNotes", "Notes received: " + notes.size());
 
             if (notes == null || notes.isEmpty()) {
                 binding.recyclerGalleryNotes.setVisibility(View.GONE);

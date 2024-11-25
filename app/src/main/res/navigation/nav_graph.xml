@@ -12,25 +12,19 @@
         tools:layout="@layout/fragment_gallery_notes">
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentDetailNote"
-            app:destination="@id/fragmentDetailNote" />
+            app:destination="@id/fragmentStandarNote" />
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentViewNote"
             app:destination="@id/fragmentViewNote" />
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentCategoryNote"
             app:destination="@id/fragmentCategoryNote" />
+        <action
+            android:id="@+id/action_fragmentGalleryNotes_to_fragmentStandarNote"
+            app:destination="@id/fragmentStandarNote" />
     </fragment>
 
     <!-- Detail Fragment -->
-    <fragment
-        android:id="@+id/fragmentDetailNote"
-        android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandardNote"
-        android:label="FragmentDetailNote"
-        tools:layout="@layout/fragment_detail_note">
-        <action
-            android:id="@+id/action_fragmentDetailNote_to_fragmentGalleryNotes"
-            app:destination="@id/fragmentGalleryNotes" />
-    </fragment>
 
     <!-- View Note Fragment -->
     <fragment
@@ -40,10 +34,13 @@
         tools:layout="@layout/fragment_view_note">
         <action
             android:id="@+id/action_fragmentViewNote_to_fragmentDetailNote"
-            app:destination="@id/fragmentDetailNote" />
+            app:destination="@id/fragmentStandarNote" />
         <action
             android:id="@+id/action_fragmentViewNote_to_fragmentShoppingListNote"
             app:destination="@id/fragmentShoppingListNote" />
+        <action
+            android:id="@+id/action_fragmentViewNote_to_fragmentStandarNote"
+            app:destination="@id/fragmentStandarNote" />
     </fragment>
 
     <!-- Category Selection Fragment -->
@@ -53,11 +50,12 @@
         android:label="FragmentCategoryNote"
         tools:layout="@layout/fragment_category_note">
         <action
-            android:id="@+id/action_fragmentCategoryNote_to_fragmentDetailNote"
-            app:destination="@id/fragmentDetailNote" />
+            android:id="@+id/action_fragmentCategoryNote_to_fragmentStandarNote"
+            app:destination="@id/fragmentStandarNote" />
         <action
             android:id="@+id/action_fragmentCategoryNote_to_fragmentShoppingListNote"
             app:destination="@id/fragmentShoppingListNote" />
+
     </fragment>
 
     <!-- Shopping List Fragment -->
@@ -68,6 +66,14 @@
         tools:layout="@layout/fragment_shopping_list_note">
         <action
             android:id="@+id/action_fragmentShoppingListNote_to_fragmentGalleryNotes"
+            app:destination="@id/fragmentGalleryNotes" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentStandarNote"
+        android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandarNote"
+        android:label="FragmentStandarNote" >
+        <action
+            android:id="@+id/action_fragmentStandarNote_to_fragmentGalleryNotes"
             app:destination="@id/fragmentGalleryNotes" />
     </fragment>
 
