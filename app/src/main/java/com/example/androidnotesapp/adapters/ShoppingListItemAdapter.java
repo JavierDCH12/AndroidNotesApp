@@ -20,6 +20,10 @@ public class ShoppingListItemAdapter extends RecyclerView.Adapter<ShoppingListIt
 
     private List<ShoppingItem> shoppingList;
 
+    public ShoppingListItemAdapter(List<ShoppingItem> shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+
 
     @NonNull
     @Override

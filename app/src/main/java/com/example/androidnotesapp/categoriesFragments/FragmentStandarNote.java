@@ -15,14 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.androidnotesapp.R;
-import com.example.androidnotesapp.databinding.FragmentDetailNoteBinding;
+import com.example.androidnotesapp.databinding.FragmentStandardNoteBinding;
 import com.example.androidnotesapp.model.Note;
 import com.example.androidnotesapp.model.NoteViewModel;
 
 
 public class FragmentStandarNote extends Fragment {
 
-    FragmentDetailNoteBinding   binding;
+    FragmentStandardNoteBinding binding;
     private NoteViewModel noteViewModel;
     private static final String EMPTY_STRING = "";
     public FragmentStandarNote() {
@@ -40,7 +40,7 @@ public class FragmentStandarNote extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentDetailNoteBinding.inflate(inflater, container, false);
+        binding = FragmentStandardNoteBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

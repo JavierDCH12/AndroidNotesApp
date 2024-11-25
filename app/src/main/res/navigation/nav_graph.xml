@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_fragmentGalleryNotes_to_fragmentStandarNote"
             app:destination="@id/fragmentStandarNote" />
+        <action
+            android:id="@+id/action_fragmentGalleryNotes_to_fragmentShoppingListNote"
+            app:destination="@id/fragmentShoppingListNote" />
     </fragment>
 
     <!-- Detail Fragment -->
@@ -68,6 +71,7 @@
             android:id="@+id/action_fragmentShoppingListNote_to_fragmentGalleryNotes"
             app:destination="@id/fragmentGalleryNotes" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentStandarNote"
         android:name="com.example.androidnotesapp.categoriesFragments.FragmentStandarNote"
