@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_fragmentViewNote_to_fragmentDetailNote"
             app:destination="@id/fragmentDetailNote" />
+        <action
+            android:id="@+id/action_fragmentViewNote_to_fragmentShoppingListNote"
+            app:destination="@id/fragmentShoppingListNote" />
     </fragment>
 
     <!-- Category Selection Fragment -->

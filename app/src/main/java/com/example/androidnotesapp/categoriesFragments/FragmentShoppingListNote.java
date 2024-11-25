@@ -86,6 +86,8 @@ public class FragmentShoppingListNote extends Fragment {
 
     }//ONVIEWCREATED END
 
+
+
     private void saveShoppingList() {
         String json = gson.toJson(shoppingList);
         sharedPreferences.edit().putString(PREFS_SHOPPING_LIST_KEY, json).apply();

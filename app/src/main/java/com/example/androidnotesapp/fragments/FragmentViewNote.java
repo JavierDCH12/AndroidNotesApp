@@ -12,9 +12,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.androidnotesapp.R;
 import com.example.androidnotesapp.databinding.FragmentViewNoteBinding;
+import com.example.androidnotesapp.model.Note;
 import com.example.androidnotesapp.model.NoteViewModel;
 
 
@@ -60,8 +62,29 @@ public class FragmentViewNote extends Fragment {
         binding.editNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_fragmentViewNote_to_fragmentDetailNote);
+                Note currentnote = noteViewModel.getSelectedNote().getValue();
+
+                if(currentnote!=null){
+                    String category = currentnote.getCategory();
+                    NavController navController = Navigation.findNavController(view);
+
+                    switch (category.toLowerCase()){
+                        case "standard":
+                            navController.navigate(R.id.action_fragmentViewNote_to_fragmentDetailNote);
+                            break;
+                        case "shopping list":
+                            navController.navigate(R.id.action_fragmentViewNote_to_fragmentShoppingListNote);
+                            break;
+                        default:
+                            Toast.makeText(requireContext(), "Categoria no encontrads", Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+
+                }
+
+
             }
         });
 
