@@ -85,7 +85,7 @@ public class FragmentShoppingListNote extends Fragment {
         binding.shoppingListRecyclerView.setAdapter(adapter);
 
         Note selectedNote = noteViewModel.getSelectedNote().getValue();
-        if (selectedNote != null && selectedNote.getCategory().equals("shopping_list")) {
+        if (selectedNote != null && selectedNote.getCategory().equalsIgnoreCase("shopping list")) {
             shoppingList = convertJsonToList(selectedNote.getContent());
             adapter.updateList(shoppingList);
         }

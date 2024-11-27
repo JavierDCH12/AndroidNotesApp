@@ -1,5 +1,6 @@
 package com.example.androidnotesapp.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -42,45 +43,53 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
     public void onBindViewHolder(@NonNull NotesViewholder holder, int position) {
         Note note = note_list.get(position);
 
-        holder.binding.noteTitleText.setText(note.getTitle());
+        // Configurar el título de la nota
         holder.binding.noteTitleText.setText(note.getTitle());
 
-        if ("shopping_list".equals(note.getCategory())) {
-            // Mostrar un texto legible en lugar del JSON
+        // Configurar el contenido de la nota
+        if ("shopping list".equalsIgnoreCase(note.getCategory())) {
             holder.binding.noteContentText.setText("Lista de Compras: " + formatShoppingList(note.getContent()));
         } else {
-            // Mostrar contenido normal para notas estándar
             holder.binding.noteContentText.setText(note.getContent());
         }
 
+        // Navegar al fragmento correspondiente al hacer clic en el ítem
         holder.itemView.setOnClickListener(v -> {
             noteViewModel.selectNote(note);
+            String category = note.getCategory();
+
             NavController navController = Navigation.findNavController(v);
 
-            if ("shopping_list".equals(note.getCategory())) {
+            if ("shopping list".equalsIgnoreCase(category)) {
                 navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentShoppingListNote);
-            } else if("standard".equals(note.getCategory())) {
+            } else if ("standard".equalsIgnoreCase(category)) {
                 navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentStandarNote);
             }
         });
 
+        // Configurar el botón de edición
         holder.binding.editNoteButton.setOnClickListener(v -> {
+            String category = note.getCategory();
             noteViewModel.selectNote(note);
             NavController navController = Navigation.findNavController(v);
 
-            if ("shopping_list".equals(note.getCategory())) {
+            if ("shopping list".equalsIgnoreCase(category)) {
                 navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentShoppingListNote);
-            } else if("standard".equals(note.getCategory())) {
+            } else if ("standard".equalsIgnoreCase(category)) {
                 navController.navigate(R.id.action_fragmentGalleryNotes_to_fragmentStandarNote);
+            } else {
+                Toast.makeText(v.getContext(), "Categoría no reconocida", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Configurar el botón de eliminar
         holder.binding.deleteNoteButton.setOnClickListener(v -> {
             noteViewModel.delete(note);
             notifyItemRemoved(position);
-            Toast.makeText(v.getContext(), R.string.delete_note, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Nota eliminada", Toast.LENGTH_SHORT).show();
         });
     }
+
 
 
     @Override
@@ -90,6 +99,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
 
     private String formatShoppingList(String jsonContent) {
         try {
+            Log.d("GalleryAdapter", "Contenido del JSON: " + jsonContent);
+
             Gson gson = new Gson();
             Type type = new TypeToken<List<ShoppingItem>>() {}.getType();
             List<ShoppingItem> shoppingList = gson.fromJson(jsonContent, type);
@@ -104,6 +115,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.NotesVie
             }
             return formattedList.toString().trim();
         } catch (Exception e) {
+            Log.e("GalleryAdapter", "Error al formatear el JSON", e);
+
             return "Error al cargar la lista";
         }
     }
